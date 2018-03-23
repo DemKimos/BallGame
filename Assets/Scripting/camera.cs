@@ -13,6 +13,7 @@ public class camera : MonoBehaviour {
     private float camPosX;
     private float playerDist;
     private float lowestZ;
+    private float highestY;
     private Vector3 camPos;
     private float smoother;
     
@@ -34,9 +35,10 @@ public class camera : MonoBehaviour {
         //camPosX is just the middle of the x coordinates of p1 and p2
         camPosX =(player1.transform.position.x + player2.transform.position.x)/2;
         lowestZ=Mathf.Min(player1.transform.position.z, player2.transform.position.z);
+        highestY=Mathf.Max(player1.transform.position.y, player2.transform.position.y);
         smoother = Mathf.Log((zoomFac), smoothness);
         //log is used to smoothen camera zoom (slow down camera zoom?) (please suggest better functions)
-        camPos = new Vector3(camPosX, -smoother*playerDist+minZoom, smoother * playerDist-minZoom+lowestZ);
+        camPos = new Vector3(camPosX, -smoother*playerDist+minZoom+highestY, smoother * playerDist-minZoom+lowestZ);
         transform.position = camPos;
     }
 }

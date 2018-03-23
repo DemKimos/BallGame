@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Collectible
   - RealBall
+  - Fire
+  - P1
+  - P2
+  - P1 Goal
+  - P2 Goal
   layers:
   - Default
   - TransparentFX

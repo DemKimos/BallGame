@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ball Game", "Ball Game.csproj", "{4892CBC4-ADAE-957D-6751-CBF504A55D1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ball Game.Plugins", "Ball Game.Plugins.csproj", "{4CA13F95-8B80-C806-1236-47C60D4849D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ball Game.Editor.Plugins", "Ball Game.Editor.Plugins.csproj", "{86A343CD-E701-8A4D-7072-E2BC901E73C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{4892CBC4-ADAE-957D-6751-CBF504A55D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4892CBC4-ADAE-957D-6751-CBF504A55D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4892CBC4-ADAE-957D-6751-CBF504A55D1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CA13F95-8B80-C806-1236-47C60D4849D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA13F95-8B80-C806-1236-47C60D4849D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA13F95-8B80-C806-1236-47C60D4849D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA13F95-8B80-C806-1236-47C60D4849D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86A343CD-E701-8A4D-7072-E2BC901E73C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A343CD-E701-8A4D-7072-E2BC901E73C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86A343CD-E701-8A4D-7072-E2BC901E73C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A343CD-E701-8A4D-7072-E2BC901E73C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

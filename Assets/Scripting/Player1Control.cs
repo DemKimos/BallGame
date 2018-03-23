@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class Player1Control : MonoBehaviour {
 
+    public GameObject otherPlayer;
+    public GameObject ball;
 	public float mult=1;
+    private float speed;
     public Text countText;
     public Text winText;
     public Text nameText;
-	private Rigidbody rb;
+    public Text chargeText;
+    private Rigidbody rb;
+    private Rigidbody oprb;
+    private Rigidbody brb;
     private int count;
     float moveH;
     float moveV;
+    int charge;
     Vector3 startPosition;
     Vector3 leftoverForce;
 
@@ -22,7 +29,9 @@ public class Player1Control : MonoBehaviour {
         moveV = 0;
         count = 0;
 		rb = GetComponent<Rigidbody> ();
-        printScore();
+        oprb = otherPlayer.GetComponent<Rigidbody>();
+        brb = ball.GetComponent<Rigidbody>();
+        //printScore();
         winText.text = "";
         nameText.text = "Player1";
         startPosition = transform.position;
@@ -30,16 +39,25 @@ public class Player1Control : MonoBehaviour {
 
     private void Update()
     {
+        if (charge < 100)
+        {
+            charge = charge + 1;
+        }
+        if (speed < mult)
+        {
+            speed = speed + 0.9f;
+        }
+        printCharge();
         nameText.text = "Player1";
     }
 
     // Update is called once per frame
     void FixedUpdate () {
-        if (Input.GetKey("left") == true)
+        if (Input.GetKey("a") == true)
         {
             moveH = -1;
         }
-        else if (Input.GetKey("right") == true)
+        else if (Input.GetKey("d") == true)
         {
             moveH = 1;
         }
@@ -48,11 +66,11 @@ public class Player1Control : MonoBehaviour {
             moveH = 0;
         }
 
-        if (Input.GetKey("down") == true)
+        if (Input.GetKey("s") == true)
         {
             moveV = -1;
         }
-        else if (Input.GetKey("up") == true)
+        else if (Input.GetKey("w") == true)
         {
             moveV = 1;
         }
@@ -61,32 +79,45 @@ public class Player1Control : MonoBehaviour {
             moveV = 0;
         }
 
-        Vector3 moveVec = new Vector3(moveH, 0.0f, moveV);
+        if (Input.GetKeyDown("space") == true)
+        {
+            if (charge >= 100)
+            {
+                oprb.AddExplosionForce(5000f, transform.position, 10f, 5f);
+                brb.AddExplosionForce(50f, transform.position, 10f, 5f);
+                Explode();
+                charge = 0;
+            }            
+        }
+        
 
-        rb.AddForce(mult * moveVec);
+        Vector3 moveVec = new Vector3(moveH, 0.0f, moveV);
+        if(transform.position.y < 3)
+        {
+            rb.AddForce(speed * moveVec);
+        }
+        else
+        {
+            rb.AddForce(speed*moveVec/3f);
+        }
+        
         if (transform.position.y < -2)
         {
             transform.position = startPosition;
             rb.velocity = Vector3.zero;
+            speed = 0;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void printCharge()
     {
-        if (other.gameObject.CompareTag("Collectible"))
-        {
-            other.gameObject.SetActive(false);
-            count = count + 1;
-            printScore();
-        }
+        chargeText.fontSize = charge / 4;
+        chargeText.text = "Charge: " + charge.ToString();
     }
 
-    void printScore()
+    void Explode()
     {
-        //countText.text = "Score: " + count.ToString();
-        if (count == 13)
-        {
-            //winText.text = "YOU WON!";
-        }
+        var exp = GetComponent<ParticleSystem>();
+        exp.Play();
     }
 }
